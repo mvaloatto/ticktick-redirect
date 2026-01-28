@@ -22,20 +22,27 @@
     h1 { margin-bottom: 0.5rem; }
     p { opacity: 0.9; }
     a { color: white; }
+    .countdown { font-size: 0.9rem; opacity: 0.7; }
   </style>
   <script>
-    // Get the path from hash (e.g., #p/xxx/tasks/yyy)
     const path = window.location.hash;
     if (path) {
+      // Redirect to TickTick
       const ticktickUrl = "ticktick:///webapp/" + path;
       window.location.href = ticktickUrl;
+      
+      // Try to close the tab after 1.5 seconds
+      setTimeout(function() {
+        window.close();
+      }, 1500);
     }
   </script>
 </head>
 <body>
   <div class="container">
-    <h1>📋 TickTick Redirect</h1>
-    <p>Opening in TickTick desktop app...</p>
+    <h1>📋 TickTick</h1>
+    <p>Opening in TickTick...</p>
+    <p class="countdown">This tab will close automatically</p>
     <p><small>If nothing happens, <a href="#" id="manual-link">click here</a></small></p>
   </div>
   <script>
