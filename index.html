@@ -19,23 +19,26 @@
     h1 { margin-bottom: 0.5rem; }
     p { opacity: 0.9; }
   </style>
-  <script>
-    const path = window.location.hash;
-    if (path) {
-      // 1. Open TickTick
-      window.location.href = "ticktick:///webapp/" + path;
-      
-      // 2. After 2 seconds, redirect back to Google Calendar
-      setTimeout(function() {
-        window.location.href = "https://calendar.google.com";
-      }, 2000);
-    }
-  </script>
 </head>
 <body>
   <div class="container">
     <h1>📋 TickTick</h1>
     <p>Opening task... Returning to Calendar shortly.</p>
   </div>
+  <a id="ticktick-link" style="display:none;"></a>
+  <script>
+    const path = window.location.hash;
+    if (path) {
+      // Create and click a hidden link to open TickTick (doesn't navigate away)
+      const link = document.getElementById('ticktick-link');
+      link.href = "ticktick:///webapp/" + path;
+      link.click();
+      
+      // After 2 seconds, redirect to Google Calendar
+      setTimeout(function() {
+        window.location.href = "https://calendar.google.com";
+      }, 2000);
+    }
+  </script>
 </body>
 </html>
